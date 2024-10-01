@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlimited Color</title>
+    <style>
+        button{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color:aqua;
+            height: 45px;
+            width: 200px;
+            margin: 20px ;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            border: 0;
+            font-size: 20px;
+            font-weight: 700;
+            text-shadow: 1px 1px 5px;
+            box-shadow: 1px 1px 10px whitesmoke;
+
+        }
+        div{
+            height: 400px;
+            width: 500px;
+            background-color: #929090;
+            border-radius: 25px;
+            box-shadow: 2px 2px 10px white , -2px -2px 10px white ;
+        }
+    </style>
+</head>
+<body style="background-color: #121212; color: whitesmoke; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h1>Start should change the background color every second</h1>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+    <div></div>
+</body>
+
+<script>
+
+    const myDiv = document.querySelector('div')
+    const randomColor = function () {
+        const hax = '0123456789ABCDEF'
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += hax[Math.floor(Math.random()*10)]
+        }
+        return color;
+    };
+    let change;
+    const startChangeColor = function(){
+        if(!change){
+            change = setInterval(changeBgColor, 1000);
+
+        }
+        function changeBgColor(){
+            myDiv.style.backgroundColor = randomColor();
+        }
+    }
+    const stopChangeColor = function(){
+        clearInterval(change)
+        change = null
+    }
+    
+    document.querySelector('#start').addEventListener('click', startChangeColor)
+    document.querySelector('#stop').addEventListener('click', stopChangeColor)
+
+</script>
+
+</html>
